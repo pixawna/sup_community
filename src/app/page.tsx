@@ -6,6 +6,31 @@ import { useRef, useState } from "react";
 
 import { SiteFrame } from "@/components/site/site-frame";
 
+const communityStats = [
+  { value: "12,400+", label: "Builders learning together" },
+  { value: "180+", label: "Workflow templates shipped" },
+  { value: "64", label: "Community events hosted" },
+  { value: "38", label: "Countries represented" },
+] as const;
+
+const upcomingEvents = [
+  {
+    title: "Superplane Builder Sprint",
+    date: "June 6-7, 2026",
+    image: "/superplane_1.jpeg",
+  },
+  {
+    title: "Agent Workflow Jam",
+    date: "June 14-18, 2026",
+    image: "/superplane_2.jpeg",
+  },
+  {
+    title: "Release Patterns Summit",
+    date: "July 10, 2026",
+    image: "/overflow_photo.png",
+  },
+] as const;
+
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -42,19 +67,20 @@ export default function Home() {
 
           <div className="flex flex-col justify-center px-7 py-12 sm:px-10 lg:px-16 lg:py-18">
             <p className="relative z-10 text-sm font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
-              Welcome to Superplane Community
+              Welcome home, builder
             </p>
 
             <h1 className="relative z-10 mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl xl:text-[5.7rem] xl:leading-[0.95]">
-              Build DevOps workflows that run themselves
+              The Superplane Community, in one place
             </h1>
 
             <p className="relative z-10 mt-8 max-w-2xl text-lg leading-8 text-[var(--muted-foreground)] sm:text-xl">
-              Learn how to connect GitHub, CI/CD, incidents, approvals and AI
+              Meet fellow platform engineers, learn hands-on workflow
+              patterns, and connect GitHub, CI/CD, incidents, approvals and AI
               agents into one event-driven control plane.
             </p>
 
-            <div className="relative z-10 mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="relative z-10 mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <Link
                 href="/lessons"
                 className="inline-flex h-15 items-center justify-center rounded-2xl bg-black px-8 text-base font-semibold text-white transition hover:bg-black/86"
@@ -62,11 +88,17 @@ export default function Home() {
                 Start Learning
               </Link>
               <Link
+                href="/community"
+                className="inline-flex h-15 items-center justify-center rounded-2xl border border-black/10 bg-white/42 px-8 text-base font-semibold text-[var(--foreground)] transition hover:bg-white/72"
+              >
+                Meet the Community
+              </Link>
+              <Link
                 href="https://youtu.be/7GFIB76Oy3Y"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-15 items-center justify-center rounded-2xl border border-black/10 bg-white/42 px-8 text-base font-semibold text-[var(--foreground)] transition hover:bg-white/72"
-   >
+                className="inline-flex h-15 items-center gap-2 px-2 text-base font-semibold text-[var(--foreground)] underline decoration-black/24 underline-offset-6 transition hover:decoration-black"
+              >
                 Watch Overview
               </Link>
             </div>
@@ -201,6 +233,21 @@ export default function Home() {
       </section>
 
       <section className="pb-8 lg:pb-14">
+        <div className="grid gap-6 rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.8)] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.08)] sm:grid-cols-2 lg:grid-cols-4 lg:p-9">
+          {communityStats.map((stat) => (
+            <div key={stat.label} className="text-center sm:text-left">
+              <p className="text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)] sm:text-5xl">
+                {stat.value}
+              </p>
+              <p className="mt-2 text-base text-[var(--muted-foreground)]">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="pb-8 lg:pb-14">
         <div className="grid w-full gap-8 overflow-hidden rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.8)] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:grid-cols-[0.92fr_1.08fr] lg:p-9">
           <div className="relative overflow-hidden rounded-[24px] border border-black/8 bg-[linear-gradient(180deg,rgba(18,18,18,0.9),rgba(24,24,24,0.96))]">
             <Image
@@ -232,6 +279,74 @@ export default function Home() {
               <span aria-hidden="true">→</span>
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="pb-8 lg:pb-14">
+        <div className="rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.8)] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:p-9">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="inline-flex w-fit rounded-full bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-white">
+                Upcoming Events
+              </p>
+              <h2 className="mt-6 max-w-2xl text-3xl font-semibold tracking-[-0.05em] text-[var(--foreground)] sm:text-4xl">
+                Learn together at the next community event
+              </h2>
+            </div>
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-3 text-lg font-semibold text-[var(--foreground)] transition hover:gap-4"
+            >
+              <span>See all events</span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {upcomingEvents.map((event) => (
+              <article
+                key={event.title}
+                className="overflow-hidden rounded-[24px] border border-black/8 bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)]"
+              >
+                <div className="relative h-[220px]">
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.06),rgba(10,10,10,0.32))]" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-white">
+                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/72">
+                      {event.date}
+                    </p>
+                    <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em]">
+                      {event.title}
+                    </h3>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-8 lg:pb-14">
+        <div className="flex flex-col items-center gap-6 rounded-[28px] border border-black/8 bg-[#0d0f12] p-10 text-center text-white shadow-[0_30px_100px_rgba(0,0,0,0.18)] lg:p-14">
+          <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
+            Join thousands of builders shaping the future of AI-first
+            platform engineering
+          </h2>
+          <p className="max-w-xl text-lg leading-8 text-white/68">
+            Share your workflows, get feedback from other operators, and stay
+            up to date on new lessons and templates.
+          </p>
+          <Link
+            href="/community"
+            className="inline-flex h-14 items-center justify-center rounded-2xl bg-white px-8 text-base font-semibold text-black transition hover:bg-white/86"
+          >
+            Explore the Community
+          </Link>
         </div>
       </section>
     </SiteFrame>
