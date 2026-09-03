@@ -1,86 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { SiteFrame } from "@/components/site/site-frame";
+import { levels, workflows } from "@/components/site/workflows-data";
+import {
+  filterWorkflows,
+  getCategoryOptions,
+  type LevelFilter,
+} from "@/components/site/workflows-filters";
 
-const filters = ["Topic", "Beginner", "Intermediate", "Advanced"] as const;
+const levelFilters: LevelFilter[] = ["All", ...levels];
 
-type Level = (typeof filters)[number];
-
-type Workflow = {
-  title: string;
-  category: string;
-  level: Exclude<Level, "Topic">;
-  description: string;
-  author: string;
-  artTone: string;
-  accentTone: string;
-};
-
-const workflows: Workflow[] = [
-  {
-    title: "Policy-Gated Deploy",
-    category: "Deployments",
-    level: "Beginner",
-    description:
-      "Ship changes only after automated policy checks pass, so every release respects your compliance and security guardrails.",
-    author: "Platform Team",
-    artTone: "bg-[#f7f7f4]",
-    accentTone: "bg-[#e9f0e6]",
-  },
-  {
-    title: "Human Approval Gate",
-    category: "Approvals",
-    level: "Beginner",
-    description:
-      "Pause a workflow at a critical step and route it to the right reviewer, keeping people in the loop for high-stakes decisions.",
-    author: "Bhawna Chauhan",
-    artTone: "bg-[#eef1ea]",
-    accentTone: "bg-[#ffffff]",
-  },
-  {
-    title: "Automated Rollback Path",
-    category: "Reliability",
-    level: "Intermediate",
-    description:
-      "Detect regressions from live signals and automatically revert to the last known-good release without waking anyone up.",
-    author: "Release Studio",
-    artTone: "bg-[#111214]",
-    accentTone: "bg-[#f0f0eb]",
-  },
-  {
-    title: "Incident Response Orchestration",
-    category: "Operations",
-    level: "Intermediate",
-    description:
-      "Coordinate paging, mitigation steps, and stakeholder updates in a single workflow when production incidents happen.",
-    author: "Ops Guild",
-    artTone: "bg-[#edf4de]",
-    accentTone: "bg-[#f7f7f3]",
-  },
-  {
-    title: "Multi-Repo Release",
-    category: "Deployments",
-    level: "Advanced",
-    description:
-      "Sequence coordinated releases across several repositories, tracking dependencies so nothing ships out of order.",
-    author: "Release Studio",
-    artTone: "bg-[#f7f7f4]",
-    accentTone: "bg-[#e9f0e6]",
-  },
-  {
-    title: "Agent-Assisted Canary",
-    category: "Reliability",
-    level: "Advanced",
-    description:
-      "Let an agent watch canary metrics and widen or halt the rollout automatically, with a human able to step in at any time.",
-    author: "Platform Team",
-    artTone: "bg-[#111214]",
-    accentTone: "bg-[#f0f0eb]",
-  },
-];
+const categories = getCategoryOptions(workflows);
 
 function WorkflowArt({
   dark,
@@ -116,16 +50,50 @@ function WorkflowArt({
   );
 }
 
+function EmptyState({ onClear }: { onClear: () => void }) {
+  return (
+    <div className="mt-8 flex flex-col items-center gap-4 rounded-[24px] border border-black/8 bg-white/60 px-8 py-16 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#e6f3d0]">
+        <div className="h-8 w-8 rounded-full border-4 border-[#27684f]" />
+      </div>
+      <h3 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
+        No workflows match your filters
+      </h3>
+      <p className="max-w-md text-lg leading-7 text-[var(--muted-foreground)]">
+        Try a different search term, or reset the level and topic filters to
+        see the full workflow library again.
+      </p>
+      <button
+        type="button"
+        onClick={onClear}
+        className="inline-flex h-12 items-center rounded-full border border-black bg-black px-6 text-base font-semibold text-white transition hover:opacity-90"
+      >
+        Clear filters
+      </button>
+    </div>
+  );
+}
+
 export default function WorkflowsPage() {
-  const [activeFilter, setActiveFilter] = useState<Level>("Topic");
+  const [query, setQuery] = useState("");
+  const [activeLevel, setActiveLevel] = useState<LevelFilter>("All");
+  const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const visibleWorkflows = useMemo(() => {
-    if (activeFilter === "Topic") {
-      return workflows;
-    }
+  const visibleWorkflows = useMemo(
+    () =>
+      filterWorkflows(workflows, {
+        query,
+        level: activeLevel,
+        category: activeCategory,
+      }),
+    [activeLevel, activeCategory, query],
+  );
 
-    return workflows.filter((workflow) => workflow.level === activeFilter);
-  }, [activeFilter]);
+  function clearFilters() {
+    setQuery("");
+    setActiveLevel("All");
+    setActiveCategory("All");
+  }
 
   return (
     <SiteFrame>
@@ -154,29 +122,55 @@ export default function WorkflowsPage() {
               >
                 Explore
               </button>
-              <button
-                type="button"
-                className="pb-4 text-lg font-medium text-black/46 transition hover:text-[var(--foreground)]"
-              >
-                Campaigns
-              </button>
             </div>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            {filters.map((filter) => (
+          <div className="mt-8">
+            <label htmlFor="workflow-search" className="sr-only">
+              Search workflows
+            </label>
+            <input
+              id="workflow-search"
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search workflows by title, tag, category, or maintainer…"
+              className="h-14 w-full max-w-xl rounded-full border border-black/8 bg-white/70 px-6 text-lg text-[var(--foreground)] placeholder:text-black/40 transition focus:border-black focus:outline-none focus:ring-2 focus:ring-black/20"
+            />
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-4">
+            {levelFilters.map((level) => (
               <button
-                key={filter}
+                key={level}
                 type="button"
-                onClick={() => setActiveFilter(filter)}
-                aria-pressed={activeFilter === filter}
+                onClick={() => setActiveLevel(level)}
+                aria-pressed={activeLevel === level}
                 className={`inline-flex h-14 items-center rounded-full border px-6 text-lg font-medium transition ${
-                  activeFilter === filter
+                  activeLevel === level
                     ? "border-black bg-black text-white"
                     : "border-black/8 bg-white/70 text-black/68 hover:bg-white"
                 }`}
               >
-                {filter}
+                {level}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-3">
+            {categories.map((category) => (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setActiveCategory(category)}
+                aria-pressed={activeCategory === category}
+                className={`inline-flex h-10 items-center rounded-full border px-5 text-sm font-medium transition ${
+                  activeCategory === category
+                    ? "border-black bg-[#d8f57a] text-black"
+                    : "border-black/8 bg-white/60 text-black/58 hover:bg-white"
+                }`}
+              >
+                {category}
               </button>
             ))}
           </div>
@@ -186,21 +180,22 @@ export default function WorkflowsPage() {
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
                 Workflow Templates
               </h2>
-              <span className="pb-1 text-2xl text-black/44">
+              <span className="pb-1 text-2xl text-black/44" aria-live="polite">
                 {visibleWorkflows.length}
               </span>
             </div>
 
-            <div className="mt-8 grid gap-6 xl:grid-cols-3 md:grid-cols-2">
-              {visibleWorkflows.map((workflow, index) => {
-                const dark = index === 2 || index === 5;
-                return (
+            {visibleWorkflows.length === 0 ? (
+              <EmptyState onClear={clearFilters} />
+            ) : (
+              <div className="mt-8 grid gap-6 xl:grid-cols-3 md:grid-cols-2">
+                {visibleWorkflows.map((workflow) => (
                   <article
-                    key={workflow.title}
-                    className="overflow-hidden rounded-[24px] border border-black/8 bg-[#fcfcfa] shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
+                    key={workflow.slug}
+                    className="group overflow-hidden rounded-[24px] border border-black/8 bg-[#fcfcfa] shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(0,0,0,0.14)]"
                   >
                     <WorkflowArt
-                      dark={dark}
+                      dark={workflow.dark}
                       tone={workflow.artTone}
                       accent={workflow.accentTone}
                     />
@@ -213,6 +208,12 @@ export default function WorkflowsPage() {
                         <span className="inline-flex rounded-full border border-black/8 px-4 py-2 text-sm font-medium text-black/58">
                           {workflow.category}
                         </span>
+                        <span className="inline-flex rounded-full bg-black/4 px-3 py-1 text-sm font-medium text-black/46">
+                          {workflow.steps} steps
+                        </span>
+                        <span className="inline-flex rounded-full bg-black/4 px-3 py-1 text-sm font-medium text-black/46">
+                          {workflow.estimatedTime}
+                        </span>
                       </div>
 
                       <h3 className="mt-5 text-2xl font-semibold leading-[1.2] tracking-[-0.03em] text-[var(--foreground)]">
@@ -222,25 +223,47 @@ export default function WorkflowsPage() {
                         {workflow.description}
                       </p>
 
-                      <div className="mt-7 flex items-center gap-3">
-                        <div className="h-12 w-12 overflow-hidden rounded-full border border-black/8 bg-white">
-                          <Image
-                            src="/minilistic_professional_pic.png"
-                            alt={workflow.author}
-                            width={48}
-                            height={48}
-                            className="h-full w-full object-cover"
-                          />
+                      <ul className="mt-4 flex flex-wrap gap-2">
+                        {workflow.tags.map((tag) => (
+                          <li
+                            key={tag}
+                            className="rounded-full border border-black/8 px-3 py-1 text-sm text-black/54"
+                          >
+                            #{tag}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-7 flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <div className="h-12 w-12 overflow-hidden rounded-full border border-black/8 bg-white">
+                            <Image
+                              src="/minilistic_professional_pic.png"
+                              alt={workflow.author}
+                              width={48}
+                              height={48}
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
+                          <p className="text-lg text-black/58">
+                            Maintained by {workflow.author}
+                          </p>
                         </div>
-                        <p className="text-lg text-black/58">
-                          Maintained by {workflow.author}
-                        </p>
+
+                        <Link
+                          href={workflow.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-11 items-center rounded-full border border-black px-5 text-base font-semibold text-[var(--foreground)] transition group-hover:bg-black group-hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+                        >
+                          View workflow
+                        </Link>
                       </div>
                     </div>
                   </article>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
