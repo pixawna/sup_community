@@ -20,16 +20,6 @@ export const footerColumns = [
     ],
   },
   {
-    title: "Learning Paths",
-    links: [
-      { label: "Beginner Workflows", href: "/lessons" },
-      { label: "Policy-Gated Deploys", href: "/workflows" },
-      { label: "Incident Automation", href: "/workflows" },
-      { label: "Auto Rollbacks", href: "/workflows" },
-      { label: "Multi-Repo Releases", href: "/workflows" },
-    ],
-  },
-  {
     title: "Resources",
     links: [
       { label: "Docs", href: "https://docs.superplane.com/" },
