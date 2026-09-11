@@ -2,7 +2,7 @@ export const navItems = [
   { label: "Home", href: "/", disabled: false },
   { label: "Workflows", href: "/workflows", disabled: false },
   { label: "Lessons", href: "/lessons", disabled: false },
-  { label: "Playgrounds", href: "/playgrounds", disabled: true },
+  { label: "Playground", href: "/playgrounds", disabled: true },
   { label: "Community", href: "/community", disabled: false },
   { label: "Events", href: "/events", disabled: false },
   { label: "Profile", href: "/profile", disabled: false },
