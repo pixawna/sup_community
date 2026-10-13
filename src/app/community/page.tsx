@@ -9,22 +9,22 @@ const socialBlocks = [
   {
     label: "X",
     href: "https://x.com/superplanehq",
-    tone: "bg-black text-white",
+    tone: "bg-[var(--pitch)] text-[var(--cloud)]",
   },
   {
     label: "in",
     href: "https://www.linkedin.com/company/superplane/",
-    tone: "bg-[#1f1f1f] text-white",
+    tone: "bg-[var(--teal)] text-[var(--cloud)]",
   },
   {
     label: "Discord",
     href: "https://discord.com/invite/KC78eCNsnw",
-    tone: "bg-[#2c2c2c] text-white",
+    tone: "bg-[var(--graphite)] text-[var(--cloud)]",
   },
   {
     label: "GitHub",
     href: "https://github.com/superplanehq/superplane",
-    tone: "bg-[#3a3a3a] text-white",
+    tone: "bg-[#1b1e1d] text-[var(--cloud)]",
   },
 ] as const;
 
@@ -109,19 +109,19 @@ export default function CommunityPage() {
   return (
     <SiteFrame>
       <section className="pb-8 pt-10 lg:pb-12 lg:pt-14">
-        <div className="grid gap-10 rounded-[32px] border border-black/8 bg-[rgba(255,255,255,0.84)] p-8 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:grid-cols-[1.08fr_0.92fr] lg:p-12">
+        <div className="surface-card grid gap-10 rounded-[32px] p-8 lg:grid-cols-[1.08fr_0.92fr] lg:p-12">
           <div className="flex flex-col justify-center">
             <div className="mt-2">
               <h1 className="text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl lg:text-[5.2rem] lg:leading-[0.96]">
                 <span className="block">Join the</span>
-                <span className="mt-4 inline-block whitespace-nowrap rounded-[1.6rem] bg-black px-6 py-3 text-[0.88em] text-white shadow-[0_16px_34px_rgba(0,0,0,0.14)]">
+                <span className="mt-4 inline-block whitespace-nowrap rounded-[1.6rem] bg-[var(--cloud)] px-6 py-3 text-[0.88em] text-[var(--pitch)]">
                   Superplane Community
                 </span>
               </h1>
               <p className="mt-10 max-w-3xl text-xl leading-9 text-[var(--muted-foreground)]">
                 Connect with developers, join workflow jams, and build the
                 future of AI-first platform engineering with{" "}
-                <span className="font-semibold text-[var(--foreground)] underline decoration-black decoration-4 underline-offset-6">
+                <span className="font-semibold text-[var(--foreground)] underline decoration-[var(--orange)] decoration-4 underline-offset-6">
                   thousands of creators
                 </span>{" "}
                 worldwide.
@@ -136,7 +136,7 @@ export default function CommunityPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={item.label}
-                  className={`flex h-22 w-22 items-center justify-center rounded-none shadow-[0_16px_30px_rgba(0,0,0,0.08)] transition hover:scale-[1.03] ${item.tone}`}
+                  className={`flex h-22 w-22 items-center justify-center rounded-none border border-[var(--border)] transition hover:scale-[1.03] hover:border-[var(--orange)] ${item.tone}`}
                 >
                   <SocialIcon label={item.label} />
                 </a>
@@ -146,11 +146,11 @@ export default function CommunityPage() {
 
           <div className="flex flex-col items-center justify-center">
             <div className="relative w-full max-w-[640px]">
-              <div className="absolute inset-x-6 bottom-[-18px] h-16 rounded-[1.8rem] bg-black/12 blur-sm" />
+              <div className="absolute inset-x-6 bottom-[-18px] h-16 rounded-[1.8rem] bg-black/40 blur-sm" />
               <button
                 type="button"
                 onClick={handleToggleSlide}
-                className="relative block w-full overflow-hidden rounded-[2rem] border-[3px] border-black bg-black text-left shadow-[0_28px_80px_rgba(0,0,0,0.14)]"
+                className="relative block w-full overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--pitch)] text-left"
               >
                 <div className="relative h-[520px]">
                   <Image
@@ -159,12 +159,12 @@ export default function CommunityPage() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,12,12,0.02),rgba(12,12,12,0.42))]" />
-                  <div className="absolute inset-x-0 bottom-0 p-7 text-white">
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,9,10,0.02),rgba(8,9,10,0.62))]" />
+                  <div className="absolute inset-x-0 bottom-0 p-7 text-[var(--cloud)]">
                     <h2 className="text-4xl font-semibold tracking-[-0.04em]">
                       {currentSlide.title}
                     </h2>
-                    <p className="mt-2 text-xl text-white/78">
+                    <p className="mt-2 text-xl text-[var(--mist)]">
                       Click to see more →
                     </p>
                   </div>
@@ -181,8 +181,8 @@ export default function CommunityPage() {
                   aria-label={`Go to slide ${index + 1}`}
                   className={`h-4 w-4 rounded-full border-2 ${
                     index === activeSlide
-                      ? "border-black bg-black"
-                      : "border-black/64 bg-transparent"
+                      ? "border-[var(--orange)] bg-[var(--orange)]"
+                      : "border-[var(--muted)] bg-transparent"
                   }`}
                 />
               ))}
@@ -192,13 +192,13 @@ export default function CommunityPage() {
       </section>
 
       <section className="pb-8 lg:pb-14">
-        <div className="rounded-[32px] border border-black/8 bg-[rgba(255,255,255,0.9)] p-8 shadow-[0_24px_80px_rgba(0,0,0,0.06)] lg:p-12">
+        <div className="surface-card rounded-[32px] p-8 lg:p-12">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl lg:text-[5rem] lg:leading-[0.95]">
-              Meet Our <span className="text-black/72">Builders</span>
+              Meet Our <span className="text-[var(--muted)]">Builders</span>
               <br />
               Shipping{" "}
-              <span className="inline-block rotate-[-3deg] rounded-[1.5rem] bg-black px-6 py-3 text-white shadow-[0_16px_30px_rgba(0,0,0,0.12)]">
+              <span className="inline-block rotate-[-3deg] rounded-[1.5rem] bg-[var(--orange)] px-6 py-3 text-[var(--pitch)]">
                 Real Products
               </span>
             </h2>
@@ -214,13 +214,13 @@ export default function CommunityPage() {
             {builderPosts.map((post, index) => (
               <article
                 key={post.handle}
-                className={`overflow-hidden rounded-[24px] border border-black/8 bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)] ${
+                className={`overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--pitch)] ${
                   index === 1 ? "lg:translate-y-6" : ""
                 }`}
               >
                 <div className="flex items-start justify-between px-6 pb-4 pt-6">
                   <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 overflow-hidden rounded-full border border-black/8 bg-white">
+                    <div className="h-12 w-12 overflow-hidden rounded-full border border-[var(--border)] bg-[var(--graphite)]">
                       <Image
                         src="/minilistic_professional_pic.png"
                         alt={post.handle}
@@ -233,7 +233,7 @@ export default function CommunityPage() {
                       {post.handle}
                     </p>
                   </div>
-                  <span className="text-4xl leading-none text-black/28">X</span>
+                  <span className="text-4xl leading-none text-[var(--muted)]">X</span>
                 </div>
 
                 <div className="px-6 pb-6">
@@ -243,7 +243,7 @@ export default function CommunityPage() {
                 </div>
 
                 {index === 1 || index === 3 ? (
-                  <div className="relative h-[240px] border-t border-black/8">
+                  <div className="relative h-[240px] border-t border-[var(--border)]">
                     <Image
                       src={
                         index === 1
@@ -257,7 +257,7 @@ export default function CommunityPage() {
                   </div>
                 ) : null}
 
-                <div className="flex items-center justify-between border-t border-black/8 px-6 py-4 text-black/30">
+                <div className="flex items-center justify-between border-t border-[var(--border)] px-6 py-4 text-[var(--muted)]">
                   <span>♡</span>
                   <span>◌</span>
                   <span>↻</span>

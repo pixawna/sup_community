@@ -93,12 +93,10 @@ export default function ProfilePage() {
   return (
     <SiteFrame>
       <section className="pb-8 pt-10 lg:pb-14 lg:pt-14">
-        <div className="rounded-[32px] border border-black/8 bg-[rgba(255,255,255,0.88)] p-7 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:p-10">
+        <div className="surface-card rounded-[32px] p-7 lg:p-10">
           <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="flex flex-col justify-center rounded-[28px] border border-black/6 bg-white/62 p-7 lg:p-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.34em] text-black/72">
-                Superplane Community Profile
-              </p>
+            <div className="flex flex-col justify-center rounded-[28px] border border-[var(--border)] bg-[var(--pitch)] p-7 lg:p-8">
+              <p className="eyebrow">Superplane Community Profile</p>
               <h1 className="mt-7 max-w-4xl text-5xl font-semibold tracking-[-0.07em] text-[var(--foreground)] sm:text-6xl lg:text-[5.2rem] lg:leading-[0.95]">
                 Track your DevOps learning journey
               </h1>
@@ -110,23 +108,23 @@ export default function ProfilePage() {
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/lessons"
-                  className="inline-flex h-14 items-center justify-center rounded-2xl bg-black px-7 text-base font-semibold text-white transition hover:bg-black/86"
+                  className="btn-primary h-14 px-7 text-base"
                 >
                   Continue Learning
                 </Link>
                 <Link
                   href="/lessons"
-                  className="inline-flex h-14 items-center justify-center rounded-2xl border border-black/10 bg-white px-7 text-base font-semibold text-[var(--foreground)] transition hover:bg-[#fafaf8]"
+                  className="btn-secondary h-14 px-7 text-base"
                 >
                   View Lessons
                 </Link>
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-black/6 bg-white/72 p-7 lg:p-8">
+            <div className="rounded-[28px] border border-[var(--border)] bg-[var(--pitch)] p-7 lg:p-8">
               <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
                 <div className="flex items-start justify-center">
-                  <div className="relative h-44 w-44 overflow-hidden rounded-full border border-black/8 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)]">
+                  <div className="relative h-44 w-44 overflow-hidden rounded-full border border-[var(--border)] bg-[var(--graphite)]">
                     <Image
                       src="/minilistic_professional_pic.png"
                       alt="Bhawna Chauhan"
@@ -161,7 +159,7 @@ export default function ProfilePage() {
 
                   <button
                     type="button"
-                    className="mt-8 inline-flex h-13 w-fit items-center justify-center rounded-2xl border border-black/10 bg-white px-7 text-base font-semibold text-[var(--foreground)] transition hover:bg-[#fafaf8]"
+                    className="btn-secondary mt-8 h-12 w-fit px-7 text-base"
                   >
                     Edit Profile
                   </button>
@@ -171,43 +169,43 @@ export default function ProfilePage() {
           </div>
 
           <div className="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="rounded-[28px] border border-black/6 bg-white/72 p-7">
+            <div className="rounded-[28px] border border-[var(--border)] bg-[var(--pitch)] p-7">
               <div className="grid gap-6 lg:grid-cols-[0.9fr_1.05fr_1.05fr] lg:items-center">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-[24px] border border-black/8 bg-white text-[var(--foreground)]">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-[24px] border border-[var(--border)] bg-[var(--graphite)] text-[var(--cloud)]">
                     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-10 w-10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 3 5 7v10l7 4 7-4V7l-7-4Z" stroke="currentColor" strokeWidth="2" />
                       <path d="M5 7l7 4 7-4M12 11v10" stroke="currentColor" strokeWidth="2" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-black/44">Current Level</p>
+                    <p className="text-sm text-[var(--muted)]">Current Level</p>
                     <p className="mt-1 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
                       Level 7
                     </p>
-                    <span className="mt-2 inline-flex rounded-full bg-[#f1f1ee] px-4 py-2 text-base text-black/64">
+                    <span className="mt-2 inline-flex rounded-full bg-[var(--teal)] px-4 py-2 text-base text-[var(--sage)]">
                       DevOps Builder
                     </span>
                   </div>
                 </div>
 
-                <div className="border-t border-black/8 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-                  <p className="text-sm text-black/44">Total XP</p>
+                <div className="border-t border-[var(--border)] pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                  <p className="text-sm text-[var(--muted)]">Total XP</p>
                   <p className="mt-2 text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)]">
-                    2,480 <span className="text-xl font-medium text-black/46">XP</span>
+                    2,480 <span className="text-xl font-medium text-[var(--muted)]">XP</span>
                   </p>
                 </div>
 
-                <div className="border-t border-black/8 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-                  <p className="text-sm text-black/44">XP to next level</p>
+                <div className="border-t border-[var(--border)] pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                  <p className="text-sm text-[var(--muted)]">XP to next level</p>
                   <p className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
-                    320 <span className="text-lg font-medium text-black/46">XP to Level 8</span>
+                    320 <span className="text-lg font-medium text-[var(--muted)]">XP to Level 8</span>
                   </p>
                   <div className="mt-5">
-                    <div className="h-4 overflow-hidden rounded-full bg-black/8">
-                      <div className="h-full w-[88%] rounded-full bg-black" />
+                    <div className="h-4 overflow-hidden rounded-full bg-[var(--border)]">
+                      <div className="h-full w-[88%] rounded-full bg-[var(--orange)]" />
                     </div>
-                    <p className="mt-3 text-right text-base font-medium text-black/52">
+                    <p className="mt-3 text-right text-base font-medium text-[var(--muted)]">
                       88%
                     </p>
                   </div>
@@ -215,9 +213,9 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-black/6 bg-white/72 p-7">
+            <div className="rounded-[28px] border border-[var(--border)] bg-[var(--pitch)] p-7">
               <div className="flex items-center gap-5">
-                <div className="flex h-18 w-18 items-center justify-center rounded-full bg-[#f3f3f0] text-[var(--foreground)]">
+                <div className="flex h-18 w-18 items-center justify-center rounded-full bg-[var(--teal)] text-[var(--sage)]">
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-9 w-9" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 3c2.2 2.4 3.5 5.2 3.5 8.2 0 2.5-1 4.3-2.4 5.4 1.8.1 3.9-.7 5.1-2.3 2.2-3 1.3-7.4-2-11.3-.7-.8-1.4-1.4-2.2-2Z" stroke="currentColor" strokeWidth="2" />
                     <path d="M10.5 10.5c-2 1.2-3.5 3.2-3.5 5.5 0 3 2.2 5 5 5s5-2 5-5c0-2.3-1.5-4.3-3.5-5.5.2 2.4-1.1 3.8-3 4.5.3-1.5.1-3-.5-4.5Z" stroke="currentColor" strokeWidth="2" />
@@ -242,13 +240,13 @@ export default function ProfilePage() {
             {achievements.map((achievement) => (
               <article
                 key={achievement.title}
-                className="rounded-[24px] border border-black/6 bg-white/72 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.05)]"
+                className="rounded-[24px] border border-[var(--border)] bg-[var(--pitch)] p-6"
               >
                 <div className="flex items-center justify-between gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#f3f3f0] text-[var(--foreground)]">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--graphite)] text-[var(--cloud)]">
                     <AchievementIcon type={achievement.icon} />
                   </div>
-                  <p className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
+                  <p className="font-mono text-2xl font-medium tracking-[-0.04em] text-[var(--orange)]">
                     {achievement.xp}
                   </p>
                 </div>

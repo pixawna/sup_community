@@ -20,11 +20,9 @@ export function SectionPage({
   return (
     <SiteFrame>
       <section className="flex flex-1 items-center py-10 lg:py-14">
-        <div className="hero-shell relative grid w-full gap-8 overflow-hidden rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.8)] p-7 lg:grid-cols-[1.02fr_0.98fr] lg:p-10">
+        <div className="hero-shell relative grid w-full gap-8 overflow-hidden rounded-[28px] p-7 lg:grid-cols-[1.02fr_0.98fr] lg:p-10">
           <div className="flex flex-col justify-center">
-            <p className="inline-flex w-fit rounded-full bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-white">
-              {badge}
-            </p>
+            <p className="eyebrow w-fit">{badge}</p>
             <h1 className="mt-7 max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl lg:text-[5.1rem] lg:leading-[0.97]">
               {title}
             </h1>
@@ -37,9 +35,9 @@ export function SectionPage({
             {highlights.map((item, index) => (
               <article
                 key={item}
-                className="hero-card flex min-h-[170px] flex-col justify-between rounded-[24px] p-6"
+                className="surface-card flex min-h-[170px] flex-col justify-between rounded-[24px] p-6"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-[16px] bg-black text-sm font-semibold text-white">
+                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[var(--orange)] font-mono text-sm font-semibold text-[var(--pitch)]">
                   0{index + 1}
                 </div>
                 <p className="mt-10 text-xl font-semibold leading-8 text-[var(--foreground)]">

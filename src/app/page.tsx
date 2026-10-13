@@ -51,24 +51,9 @@ export default function Home() {
   return (
     <SiteFrame>
       <section className="flex flex-1 items-center py-10 lg:py-14">
-        <div className="hero-shell relative grid w-full gap-0 overflow-hidden rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.72)] lg:grid-cols-[1.08fr_0.92fr]">
-          <video
-            className="absolute inset-0 h-full w-full object-cover opacity-[0.18] blur-[2px]"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-          >
-            <source src="/superplane_review_video.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.88)_0%,rgba(248,248,248,0.74)_36%,rgba(248,248,248,0.48)_58%,rgba(255,255,255,0.66)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_16%,rgba(0,0,0,0.12),transparent_16%),radial-gradient(circle_at_76%_40%,rgba(0,0,0,0.06),transparent_18%),radial-gradient(circle_at_30%_22%,rgba(0,0,0,0.03),transparent_14%)]" />
-
+        <div className="hero-shell relative grid w-full gap-0 overflow-hidden rounded-[28px] lg:grid-cols-[1.08fr_0.92fr]">
           <div className="flex flex-col justify-center px-7 py-12 sm:px-10 lg:px-16 lg:py-18">
-            <p className="relative z-10 text-sm font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
-              Welcome home, builder
-            </p>
+            <p className="eyebrow relative z-10">Welcome home, builder</p>
 
             <h1 className="relative z-10 mt-6 max-w-4xl text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl xl:text-[5.7rem] xl:leading-[0.95]">
               The Superplane Community, in one place
@@ -83,7 +68,7 @@ export default function Home() {
             <div className="relative z-10 mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
               <Link
                 href="/lessons"
-                className="inline-flex h-15 items-center justify-center rounded-2xl bg-black px-8 text-base font-semibold text-white transition hover:bg-black/86"
+                className="btn-primary h-14 px-8 text-base"
               >
                 Start Learning
               </Link>
@@ -91,7 +76,7 @@ export default function Home() {
                 href="https://youtu.be/7GFIB76Oy3Y"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-15 items-center gap-2 px-2 text-base font-semibold text-[var(--foreground)] underline decoration-black/24 underline-offset-6 transition hover:decoration-black"
+                className="inline-flex h-14 items-center gap-2 px-2 text-base font-semibold text-[var(--foreground)] underline decoration-[var(--border)] underline-offset-6 transition hover:decoration-[var(--orange)]"
               >
                 Watch Overview
               </Link>
@@ -100,7 +85,7 @@ export default function Home() {
 
           <div className="relative z-10 flex min-h-[420px] items-center justify-center px-6 pb-8 pt-2 sm:px-10 lg:min-h-[640px] lg:px-12">
             <div className="hero-card w-full max-w-[640px] rounded-[26px] p-4">
-              <div className="overflow-hidden rounded-[22px] border border-black/8">
+              <div className="overflow-hidden rounded-[22px] border border-[var(--border)]">
                 <video
                   ref={videoRef}
                   className="h-[300px] w-full object-cover sm:h-[380px] lg:h-[460px]"
@@ -114,12 +99,12 @@ export default function Home() {
                 </video>
               </div>
 
-              <div className="mt-4 flex items-center gap-6 text-black/66">
-                <div className="flex items-center gap-6 text-black/66">
+              <div className="mt-4 flex items-center gap-6 text-[var(--muted)]">
+                <div className="flex items-center gap-6 text-[var(--muted)]">
                   <button
                     type="button"
                     onClick={handleReplay}
-                    className="inline-flex items-center gap-2 text-base transition hover:text-black"
+                    className="inline-flex items-center gap-2 text-base transition hover:text-[var(--cloud)]"
                   >
                     <svg
                       aria-hidden="true"
@@ -149,7 +134,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={handleToggleMute}
-                    className="inline-flex items-center gap-2 text-base transition hover:text-black"
+                    className="inline-flex items-center gap-2 text-base transition hover:text-[var(--cloud)]"
                   >
                     <svg
                       aria-hidden="true"
@@ -204,7 +189,7 @@ export default function Home() {
             </div>
 
             <div className="floating-note absolute bottom-2 right-2 flex items-center gap-4 rounded-[22px] px-5 py-4 sm:bottom-4 sm:right-4">
-              <div className="h-14 w-14 overflow-hidden rounded-full border border-black/10">
+              <div className="h-14 w-14 overflow-hidden rounded-full border border-[var(--border)]">
                 <Image
                   src="/minilistic_professional_pic.png"
                   alt="Bhawna Chauhan"
@@ -217,7 +202,7 @@ export default function Home() {
                 <p className="text-sm font-semibold text-[var(--foreground)]">
                   Bhawna Chauhan
                 </p>
-                <p className="mt-1 text-sm text-black/58">
+                <p className="mt-1 text-sm text-[var(--muted)]">
                   Developer Relation
                 </p>
               </div>
@@ -227,7 +212,7 @@ export default function Home() {
       </section>
 
       <section className="pb-8 lg:pb-14">
-        <div className="grid gap-6 rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.8)] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.08)] sm:grid-cols-2 lg:grid-cols-4 lg:p-9">
+        <div className="surface-card grid gap-6 rounded-[28px] p-6 sm:grid-cols-2 lg:grid-cols-4 lg:p-9">
           {communityStats.map((stat) => (
             <div key={stat.label} className="text-center sm:text-left">
               <p className="text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)] sm:text-5xl">
@@ -242,8 +227,8 @@ export default function Home() {
       </section>
 
       <section className="pb-8 lg:pb-14">
-        <div className="grid w-full gap-8 overflow-hidden rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.8)] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:grid-cols-[0.92fr_1.08fr] lg:p-9">
-          <div className="relative overflow-hidden rounded-[24px] border border-black/8 bg-[linear-gradient(180deg,rgba(18,18,18,0.9),rgba(24,24,24,0.96))]">
+        <div className="surface-card grid w-full gap-8 overflow-hidden rounded-[28px] p-6 lg:grid-cols-[0.92fr_1.08fr] lg:p-9">
+          <div className="relative overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--pitch)]">
             <Image
               src="/overflow_photo.png"
               alt="Workflow gallery preview"
@@ -254,9 +239,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col justify-center px-2 py-2 lg:px-6">
-            <p className="inline-flex w-fit rounded-full bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-white">
-              Workflow Gallery
-            </p>
+            <p className="eyebrow">Workflow Gallery</p>
             <h2 className="mt-7 max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)] sm:text-5xl lg:text-[3.6rem] lg:leading-[1.02]">
               Learn by running production-style workflows
             </h2>
@@ -267,7 +250,7 @@ export default function Home() {
             </p>
             <Link
               href="/workflows"
-              className="mt-8 inline-flex items-center gap-3 text-lg font-semibold text-[var(--foreground)] transition hover:gap-4"
+              className="mt-8 inline-flex items-center gap-3 text-lg font-semibold text-[var(--foreground)] transition hover:gap-4 hover:text-[var(--orange)]"
             >
               <span>Explore Workflows</span>
               <span aria-hidden="true">→</span>
@@ -277,19 +260,17 @@ export default function Home() {
       </section>
 
       <section className="pb-8 lg:pb-14">
-        <div className="rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.8)] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:p-9">
+        <div className="surface-card rounded-[28px] p-6 lg:p-9">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="inline-flex w-fit rounded-full bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-white">
-                Upcoming Events
-              </p>
+              <p className="eyebrow">Upcoming Events</p>
               <h2 className="mt-6 max-w-2xl text-3xl font-semibold tracking-[-0.05em] text-[var(--foreground)] sm:text-4xl">
                 Learn together at the next community event
               </h2>
             </div>
             <Link
               href="/events"
-              className="inline-flex items-center gap-3 text-lg font-semibold text-[var(--foreground)] transition hover:gap-4"
+              className="inline-flex items-center gap-3 text-lg font-semibold text-[var(--foreground)] transition hover:gap-4 hover:text-[var(--orange)]"
             >
               <span>See all events</span>
               <span aria-hidden="true">→</span>
@@ -300,7 +281,7 @@ export default function Home() {
             {upcomingEvents.map((event) => (
               <article
                 key={event.title}
-                className="overflow-hidden rounded-[24px] border border-black/8 bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)]"
+                className="overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--pitch)]"
               >
                 <div className="relative h-[220px]">
                   <Image
@@ -309,9 +290,9 @@ export default function Home() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.06),rgba(10,10,10,0.32))]" />
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                    <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/72">
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,9,10,0.06),rgba(8,9,10,0.55))]" />
+                  <div className="absolute inset-x-0 bottom-0 p-5 text-[var(--cloud)]">
+                    <p className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-[var(--orange)]">
                       {event.date}
                     </p>
                     <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em]">
@@ -326,18 +307,18 @@ export default function Home() {
       </section>
 
       <section className="pb-8 lg:pb-14">
-        <div className="flex flex-col items-center gap-6 rounded-[28px] border border-black/8 bg-[#0d0f12] p-10 text-center text-white shadow-[0_30px_100px_rgba(0,0,0,0.18)] lg:p-14">
+        <div className="flex flex-col items-center gap-6 rounded-[28px] border border-[var(--border)] bg-[var(--teal)] p-10 text-center text-[var(--cloud)] lg:p-14">
           <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
             Join thousands of builders shaping the future of AI-first
             platform engineering
           </h2>
-          <p className="max-w-xl text-lg leading-8 text-white/68">
+          <p className="max-w-xl text-lg leading-8 text-[var(--sage)]">
             Share your workflows, get feedback from other operators, and stay
             up to date on new lessons and templates.
           </p>
           <Link
             href="/community"
-            className="inline-flex h-14 items-center justify-center rounded-2xl bg-white px-8 text-base font-semibold text-black transition hover:bg-white/86"
+            className="btn-primary h-14 px-8 text-base"
           >
             Explore the Community
           </Link>

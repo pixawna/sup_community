@@ -3,7 +3,7 @@ export function SuperplaneMark() {
     <svg
       aria-hidden="true"
       viewBox="0 0 44 34"
-      className="h-8 w-8 shrink-0"
+      className="h-8 w-8 shrink-0 text-current"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
