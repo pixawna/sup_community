@@ -16,29 +16,29 @@ const lessons = [
     title: "Keeping Deployments Safe with Policy Gates",
     author: "Bhawna Chauhan",
     level: "Beginner",
-    artTone: "bg-[#f7f7f4]",
-    accentTone: "bg-[#e9f0e6]",
+    artTone: "bg-[var(--teal)]",
+    accentTone: "bg-[var(--graphite)]",
   },
   {
     title: "Approvals That Fit Modern CI/CD Releases",
     author: "Platform Team",
     level: "Beginner",
-    artTone: "bg-[#eef1ea]",
-    accentTone: "bg-[#ffffff]",
+    artTone: "bg-[var(--graphite)]",
+    accentTone: "bg-[var(--nav)]",
   },
   {
     title: "Shaping Resilient Incident Response Workflows",
     author: "Ops Guild",
     level: "Intermediate",
-    artTone: "bg-[#111214]",
-    accentTone: "bg-[#f0f0eb]",
+    artTone: "bg-[#111212]",
+    accentTone: "bg-[var(--teal)]",
   },
   {
     title: "Finding the Right Rollback Path Automatically",
     author: "Release Studio",
     level: "Beginner",
-    artTone: "bg-[#edf4de]",
-    accentTone: "bg-[#f7f7f3]",
+    artTone: "bg-[#1b1e1d]",
+    accentTone: "bg-[var(--pitch)]",
   },
 ];
 
@@ -55,22 +55,16 @@ function LessonArt({
     <div
       className={`relative flex h-[260px] items-center justify-center overflow-hidden rounded-t-[24px] ${tone}`}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.28),transparent_24%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(237,142,9,0.18),transparent_28%)]" />
       <div
-        className={`relative flex h-28 w-28 items-center justify-center rounded-[28px] border ${
-          dark ? "border-white/10 bg-white/6" : "border-black/8 bg-white/70"
-        } ${accent}`}
+        className={`relative flex h-28 w-28 items-center justify-center rounded-[28px] border border-[var(--border)] bg-[var(--pitch)]/80 ${accent}`}
       >
         <div
           className={`h-14 w-14 rounded-full border-8 ${
-            dark ? "border-[#d8f57a]" : "border-[#d6ef82]"
+            dark ? "border-[var(--orange)]" : "border-[var(--sage)]"
           }`}
         />
-        <div
-          className={`absolute h-3.5 w-14 rounded-full ${
-            dark ? "bg-white/10" : "bg-black/10"
-          }`}
-        />
+        <div className="absolute h-3.5 w-14 rounded-full bg-[var(--mist)]/20" />
       </div>
     </div>
   );
@@ -80,7 +74,7 @@ export default function LessonsPage() {
   return (
     <SiteFrame>
       <section className="pb-10 pt-10 lg:pb-14 lg:pt-14">
-        <div className="overflow-hidden rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.82)] p-7 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:p-10">
+        <div className="surface-card overflow-hidden rounded-[28px] p-7 lg:p-10">
           <div className="max-w-4xl">
             <h1 className="text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl">
               Lessons
@@ -92,17 +86,17 @@ export default function LessonsPage() {
             </p>
           </div>
 
-          <div className="mt-10 border-b border-black/8">
+          <div className="mt-10 border-b border-[var(--border)]">
             <div className="flex flex-wrap items-center gap-8">
               <button
                 type="button"
-                className="border-b-2 border-black pb-4 text-lg font-semibold text-[var(--foreground)]"
+                className="border-b-2 border-[var(--orange)] pb-4 text-lg font-semibold text-[var(--foreground)]"
               >
                 Explore
               </button>
               <button
                 type="button"
-                className="pb-4 text-lg font-medium text-black/46 transition hover:text-[var(--foreground)]"
+                className="pb-4 text-lg font-medium text-[var(--muted)] transition hover:text-[var(--foreground)]"
               >
                 Campaigns
               </button>
@@ -114,7 +108,7 @@ export default function LessonsPage() {
               <div key={filter} className="flex items-center gap-4">
                 <button
                   type="button"
-                  className="inline-flex h-14 items-center rounded-full border border-black/8 bg-white/70 px-6 text-lg font-medium text-black/68 transition hover:bg-white"
+                  className="inline-flex h-14 items-center rounded-full border border-[var(--border)] bg-transparent px-6 text-lg font-medium text-[var(--mist)] transition hover:border-[var(--mist)] hover:text-[var(--cloud)]"
                 >
                   {filter}
                   {index === 0 || index === filters.length - 1 ? (
@@ -122,7 +116,7 @@ export default function LessonsPage() {
                   ) : null}
                 </button>
                 {index === 0 || index === 2 || index === 4 ? (
-                  <span className="hidden h-8 w-px bg-black/10 lg:block" />
+                  <span className="hidden h-8 w-px bg-[var(--border)] lg:block" />
                 ) : null}
               </div>
             ))}
@@ -133,7 +127,7 @@ export default function LessonsPage() {
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
                 Product Lessons
               </h2>
-              <span className="pb-1 text-2xl text-black/44">14</span>
+              <span className="pb-1 text-2xl text-[var(--muted)]">14</span>
             </div>
 
             <div className="mt-8 grid gap-6 xl:grid-cols-4 md:grid-cols-2">
@@ -142,7 +136,7 @@ export default function LessonsPage() {
                 return (
                   <article
                     key={lesson.title}
-                    className="overflow-hidden rounded-[24px] border border-black/8 bg-[#fcfcfa] shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
+                    className="overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--pitch)]"
                   >
                     <LessonArt
                       dark={dark}
@@ -151,7 +145,7 @@ export default function LessonsPage() {
                     />
 
                     <div className="p-6">
-                      <span className="inline-flex rounded-full bg-[#e6f3d0] px-4 py-2 text-sm font-semibold text-[#27684f]">
+                      <span className="inline-flex rounded-full bg-[var(--teal)] px-4 py-2 text-sm font-semibold text-[var(--sage)]">
                         {lesson.level}
                       </span>
                       <h3 className="mt-5 text-[2rem] font-semibold leading-[1.15] tracking-[-0.04em] text-[var(--foreground)]">
@@ -159,7 +153,7 @@ export default function LessonsPage() {
                       </h3>
 
                       <div className="mt-7 flex items-center gap-3">
-                        <div className="h-12 w-12 overflow-hidden rounded-full border border-black/8 bg-white">
+                        <div className="h-12 w-12 overflow-hidden rounded-full border border-[var(--border)] bg-[var(--graphite)]">
                           <Image
                             src="/minilistic_professional_pic.png"
                             alt={lesson.author}
@@ -168,7 +162,7 @@ export default function LessonsPage() {
                             className="h-full w-full object-cover"
                           />
                         </div>
-                        <p className="text-lg text-black/58">
+                        <p className="text-lg text-[var(--muted)]">
                           Written by {lesson.author}
                         </p>
                       </div>

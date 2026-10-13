@@ -82,17 +82,17 @@ export default function EventsPage() {
   return (
     <SiteFrame>
       <section className="pb-10 pt-10 lg:pb-14 lg:pt-14">
-        <div className="overflow-hidden rounded-[30px] border border-black/8 bg-[rgba(255,255,255,0.86)] shadow-[0_30px_100px_rgba(0,0,0,0.08)]">
-          <div className="bg-[#1a2029] px-8 py-18 text-center text-white lg:px-12 lg:py-22">
+        <div className="surface-card overflow-hidden rounded-[30px]">
+          <div className="bg-[var(--teal)] px-8 py-18 text-center text-[var(--cloud)] lg:px-12 lg:py-22">
             <h1 className="mx-auto max-w-6xl text-5xl font-semibold tracking-[-0.07em] sm:text-6xl lg:text-[5.2rem] lg:leading-[0.95]">
-              Join <span className="text-white/84">Hackathons </span> &amp;
+              Join <span className="text-[var(--sage)]">Hackathons </span> &
               Events
             </h1>
-            <div className="mx-auto mt-4 h-1 w-52 rounded-full bg-[linear-gradient(90deg,rgba(255,255,255,0.7),rgba(255,255,255,0.08))]" />
-            <p className="mx-auto mt-10 max-w-5xl text-2xl leading-10 text-white/74">
+            <div className="mx-auto mt-4 h-1 w-52 rounded-full bg-[linear-gradient(90deg,var(--orange),rgba(237,142,9,0.08))]" />
+            <p className="mx-auto mt-10 max-w-5xl text-2xl leading-10 text-[var(--mist)]">
               Participate in exciting events, hackathons, and workshops to
               connect with{" "}
-              <span className="font-semibold text-white">
+              <span className="font-semibold text-[var(--cloud)]">
                 fellow developers
               </span>{" "}
               building the future of AI
@@ -105,7 +105,7 @@ export default function EventsPage() {
                 <button
                   key={filter}
                   type="button"
-                  className="inline-flex h-14 items-center gap-3 rounded-full border border-black/8 bg-white px-6 text-lg font-medium text-black/68 shadow-[0_10px_24px_rgba(0,0,0,0.05)] transition hover:bg-[#fafaf8]"
+                  className="inline-flex h-14 items-center gap-3 rounded-full border border-[var(--border)] bg-transparent px-6 text-lg font-medium text-[var(--mist)] transition hover:border-[var(--mist)] hover:text-[var(--cloud)]"
                 >
                   <FilterIcon index={index} />
                   <span>{filter}</span>
@@ -118,28 +118,24 @@ export default function EventsPage() {
               <h2 className="text-4xl font-semibold tracking-[-0.05em] text-[var(--foreground)] sm:text-5xl">
                 Upcoming Events
               </h2>
-              <p className="mt-6 text-2xl font-medium text-black/48">2026</p>
+              <p className="mt-6 font-mono text-sm uppercase tracking-[0.12em] text-[var(--orange)]">2026</p>
 
               <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-                {eventCards.map((event, index) => (
+                {eventCards.map((event) => (
                   <article
                     key={event.title}
-                    className="overflow-hidden rounded-[24px] border border-black/8 bg-white shadow-[0_18px_40px_rgba(0,0,0,0.06)]"
+                    className="overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--pitch)]"
                   >
-                    <div
-                      className={`relative h-[280px] ${
-                        index === 1 ? "bg-[#101312]" : index === 2 ? "bg-[#e6edf7]" : index === 3 ? "bg-[#f0ebdf]" : "bg-[#f3d9ea]"
-                      }`}
-                    >
+                    <div className="relative h-[280px] bg-[var(--graphite)]">
                       <Image
                         src={event.image}
                         alt={event.title}
                         fill
                         className="object-cover"
                       />
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.06),rgba(10,10,10,0.26))]" />
-                      <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-                        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/72">
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,9,10,0.06),rgba(8,9,10,0.5))]" />
+                      <div className="absolute inset-x-0 bottom-0 p-5 text-[var(--cloud)]">
+                        <p className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-[var(--orange)]">
                           {event.date}
                         </p>
                         <h3 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">
@@ -149,12 +145,12 @@ export default function EventsPage() {
                     </div>
 
                     <div className="flex items-center justify-between px-5 py-4">
-                      <span className="rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">
+                      <span className="rounded-full bg-[var(--orange)] px-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.08em] text-[var(--pitch)]">
                         Community Event
                       </span>
                       <button
                         type="button"
-                        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/8 bg-white text-lg text-black/56 transition hover:bg-[#fafaf8]"
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-transparent text-lg text-[var(--mist)] transition hover:border-[var(--cloud)] hover:text-[var(--cloud)]"
                       >
                         →
                       </button>

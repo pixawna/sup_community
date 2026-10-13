@@ -29,22 +29,16 @@ function WorkflowArt({
     <div
       className={`relative flex h-[220px] items-center justify-center overflow-hidden rounded-t-[24px] ${tone}`}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.28),transparent_24%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(237,142,9,0.18),transparent_28%)]" />
       <div
-        className={`relative flex h-24 w-24 items-center justify-center rounded-[24px] border ${
-          dark ? "border-white/10 bg-white/6" : "border-black/8 bg-white/70"
-        } ${accent}`}
+        className={`relative flex h-24 w-24 items-center justify-center rounded-[24px] border border-[var(--border)] bg-[var(--pitch)]/80 ${accent}`}
       >
         <div
           className={`h-12 w-12 rounded-full border-8 ${
-            dark ? "border-[#d8f57a]" : "border-[#d6ef82]"
+            dark ? "border-[var(--orange)]" : "border-[var(--sage)]"
           }`}
         />
-        <div
-          className={`absolute h-3 w-12 rounded-full ${
-            dark ? "bg-white/10" : "bg-black/10"
-          }`}
-        />
+        <div className="absolute h-3 w-12 rounded-full bg-[var(--mist)]/20" />
       </div>
     </div>
   );
@@ -52,9 +46,9 @@ function WorkflowArt({
 
 function EmptyState({ onClear }: { onClear: () => void }) {
   return (
-    <div className="mt-8 flex flex-col items-center gap-4 rounded-[24px] border border-black/8 bg-white/60 px-8 py-16 text-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#e6f3d0]">
-        <div className="h-8 w-8 rounded-full border-4 border-[#27684f]" />
+    <div className="surface-card mt-8 flex flex-col items-center gap-4 rounded-[24px] px-8 py-16 text-center">
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--teal)]">
+        <div className="h-8 w-8 rounded-full border-4 border-[var(--sage)]" />
       </div>
       <h3 className="text-2xl font-semibold tracking-[-0.03em] text-[var(--foreground)]">
         No workflows match your filters
@@ -66,7 +60,7 @@ function EmptyState({ onClear }: { onClear: () => void }) {
       <button
         type="button"
         onClick={onClear}
-        className="inline-flex h-12 items-center rounded-full border border-black bg-black px-6 text-base font-semibold text-white transition hover:opacity-90"
+        className="btn-primary h-12 px-6 text-base"
       >
         Clear filters
       </button>
@@ -98,10 +92,8 @@ export default function WorkflowsPage() {
   return (
     <SiteFrame>
       <section className="pb-10 pt-10 lg:pb-14 lg:pt-14">
-        <div className="overflow-hidden rounded-[28px] border border-black/8 bg-[rgba(255,255,255,0.82)] p-7 shadow-[0_30px_100px_rgba(0,0,0,0.08)] lg:p-10">
-          <p className="inline-flex w-fit rounded-full bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-white">
-            Workflow Library
-          </p>
+        <div className="surface-card overflow-hidden rounded-[28px] p-7 lg:p-10">
+          <p className="eyebrow">Workflow Library</p>
 
           <div className="mt-7 max-w-4xl">
             <h1 className="text-5xl font-semibold tracking-[-0.06em] text-[var(--foreground)] sm:text-6xl">
@@ -114,11 +106,11 @@ export default function WorkflowsPage() {
             </p>
           </div>
 
-          <div className="mt-10 border-b border-black/8">
+          <div className="mt-10 border-b border-[var(--border)]">
             <div className="flex flex-wrap items-center gap-8">
               <button
                 type="button"
-                className="border-b-2 border-black pb-4 text-lg font-semibold text-[var(--foreground)]"
+                className="border-b-2 border-[var(--orange)] pb-4 text-lg font-semibold text-[var(--foreground)]"
               >
                 Explore
               </button>
@@ -135,7 +127,7 @@ export default function WorkflowsPage() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search workflows by title, tag, category, or maintainer…"
-              className="h-14 w-full max-w-xl rounded-full border border-black/8 bg-white/70 px-6 text-lg text-[var(--foreground)] placeholder:text-black/40 transition focus:border-black focus:outline-none focus:ring-2 focus:ring-black/20"
+              className="h-14 w-full max-w-xl rounded-full border border-[var(--border)] bg-[var(--pitch)] px-6 text-lg text-[var(--foreground)] placeholder:text-[var(--muted)] transition focus:border-[var(--orange)] focus:outline-none focus:ring-2 focus:ring-[var(--orange)]/35"
             />
           </div>
 
@@ -148,8 +140,8 @@ export default function WorkflowsPage() {
                 aria-pressed={activeLevel === level}
                 className={`inline-flex h-14 items-center rounded-full border px-6 text-lg font-medium transition ${
                   activeLevel === level
-                    ? "border-black bg-black text-white"
-                    : "border-black/8 bg-white/70 text-black/68 hover:bg-white"
+                    ? "border-[var(--orange)] bg-[var(--orange)] text-[var(--pitch)]"
+                    : "border-[var(--border)] bg-transparent text-[var(--muted)] hover:border-[var(--mist)] hover:text-[var(--cloud)]"
                 }`}
               >
                 {level}
@@ -166,8 +158,8 @@ export default function WorkflowsPage() {
                 aria-pressed={activeCategory === category}
                 className={`inline-flex h-10 items-center rounded-full border px-5 text-sm font-medium transition ${
                   activeCategory === category
-                    ? "border-black bg-[#d8f57a] text-black"
-                    : "border-black/8 bg-white/60 text-black/58 hover:bg-white"
+                    ? "border-[var(--orange)] bg-[var(--orange)] text-[var(--pitch)]"
+                    : "border-[var(--border)] bg-transparent text-[var(--muted)] hover:border-[var(--mist)] hover:text-[var(--cloud)]"
                 }`}
               >
                 {category}
@@ -180,7 +172,7 @@ export default function WorkflowsPage() {
               <h2 className="text-3xl font-semibold tracking-[-0.04em] text-[var(--foreground)]">
                 Workflow Templates
               </h2>
-              <span className="pb-1 text-2xl text-black/44" aria-live="polite">
+              <span className="pb-1 text-2xl text-[var(--muted)]" aria-live="polite">
                 {visibleWorkflows.length}
               </span>
             </div>
@@ -192,7 +184,7 @@ export default function WorkflowsPage() {
                 {visibleWorkflows.map((workflow) => (
                   <article
                     key={workflow.slug}
-                    className="group overflow-hidden rounded-[24px] border border-black/8 bg-[#fcfcfa] shadow-[0_20px_60px_rgba(0,0,0,0.08)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(0,0,0,0.14)]"
+                    className="group overflow-hidden rounded-[24px] border border-[var(--border)] bg-[var(--pitch)] transition duration-200 hover:-translate-y-1 hover:border-[var(--mist)]"
                   >
                     <WorkflowArt
                       dark={workflow.dark}
@@ -202,16 +194,16 @@ export default function WorkflowsPage() {
 
                     <div className="p-6">
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="inline-flex rounded-full bg-[#e6f3d0] px-4 py-2 text-sm font-semibold text-[#27684f]">
+                        <span className="inline-flex rounded-full bg-[var(--teal)] px-4 py-2 text-sm font-semibold text-[var(--sage)]">
                           {workflow.level}
                         </span>
-                        <span className="inline-flex rounded-full border border-black/8 px-4 py-2 text-sm font-medium text-black/58">
+                        <span className="inline-flex rounded-full border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--mist)]">
                           {workflow.category}
                         </span>
-                        <span className="inline-flex rounded-full bg-black/4 px-3 py-1 text-sm font-medium text-black/46">
+                        <span className="inline-flex rounded-full bg-white/6 px-3 py-1 text-sm font-medium text-[var(--muted)]">
                           {workflow.steps} steps
                         </span>
-                        <span className="inline-flex rounded-full bg-black/4 px-3 py-1 text-sm font-medium text-black/46">
+                        <span className="inline-flex rounded-full bg-white/6 px-3 py-1 text-sm font-medium text-[var(--muted)]">
                           {workflow.estimatedTime}
                         </span>
                       </div>
@@ -227,7 +219,7 @@ export default function WorkflowsPage() {
                         {workflow.tags.map((tag) => (
                           <li
                             key={tag}
-                            className="rounded-full border border-black/8 px-3 py-1 text-sm text-black/54"
+                            className="rounded-full border border-[var(--border)] px-3 py-1 text-sm text-[var(--muted)]"
                           >
                             #{tag}
                           </li>
@@ -236,7 +228,7 @@ export default function WorkflowsPage() {
 
                       <div className="mt-7 flex items-center justify-between gap-3">
                         <div className="flex items-center gap-3">
-                          <div className="h-12 w-12 overflow-hidden rounded-full border border-black/8 bg-white">
+                          <div className="h-12 w-12 overflow-hidden rounded-full border border-[var(--border)] bg-[var(--graphite)]">
                             <Image
                               src="/minilistic_professional_pic.png"
                               alt={workflow.author}
@@ -245,7 +237,7 @@ export default function WorkflowsPage() {
                               className="h-full w-full object-cover"
                             />
                           </div>
-                          <p className="text-lg text-black/58">
+                          <p className="text-lg text-[var(--muted)]">
                             Maintained by {workflow.author}
                           </p>
                         </div>
@@ -254,7 +246,7 @@ export default function WorkflowsPage() {
                           href={workflow.href}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-11 items-center rounded-full border border-black px-5 text-base font-semibold text-[var(--foreground)] transition group-hover:bg-black group-hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black/40"
+                          className="btn-secondary h-11 px-5 text-base group-hover:border-[var(--cloud)] group-hover:bg-[var(--cloud)] group-hover:text-[var(--pitch)]"
                         >
                           View workflow
                         </Link>
